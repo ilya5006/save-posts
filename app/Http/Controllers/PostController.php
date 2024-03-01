@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Http;
-
-use PhpOffice\PhpSpreadsheet;
-
 use App\Http\Requests\PostRequest;
 
 use App\Services\PostsTakerService;
