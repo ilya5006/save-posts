@@ -21,9 +21,15 @@ class PostsTakerService
         $posts = [];
 
         for ($i = 1; $i <= $pagesAmount; $i++) {
-            $response = Http::get(self::API_URL . '?per_page=' . self::PER_PAGE . '&page=' . $i)->json();
+            $response = Http::get(self::API_URL . '?per_page=' . self::PER_PAGE . '&page=' . $i);
 
-            foreach ($response as $postInfo) {
+            if (!$response->ok()) {
+                break;
+            }
+
+            $responsePosts = $response->json();
+
+            foreach ($responsePosts as $postInfo) {
                 $posts[] = [
                     'title' => $postInfo['title']['rendered'], 
                     'body' => $postInfo['content']['rendered'], 
